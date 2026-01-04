@@ -25,7 +25,7 @@ export default TaskDetailsPage;
 
 const task = async (taskId) => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/task/${taskId}`);
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/task/${taskId}`);
 
     return response?.data?.task;
   } catch (error) {
@@ -47,7 +47,7 @@ export const action = async ({ request, params }) => {
 
 
   try {
-    await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/api/task/${taskId}`);
+    await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/task/${taskId}`);
     showSuccessToast(toastId, `Status update to Completed`);
   } catch (error) {
 

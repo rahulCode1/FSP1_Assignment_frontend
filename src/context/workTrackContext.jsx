@@ -22,7 +22,7 @@ const WorkTrackProvider = ({ children }) => {
   const fetchTeam = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/team`
+        `${process.env.REACT_APP_BACKEND_URL}/team`
       );
       const teams = response?.data?.teams;
       setTeams(teams);
@@ -31,7 +31,7 @@ const WorkTrackProvider = ({ children }) => {
   const fetchUser = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/user`
+        `${process.env.REACT_APP_BACKEND_URL}/user`
       );
 
       const users = response.data.users;
@@ -42,7 +42,7 @@ const WorkTrackProvider = ({ children }) => {
   const fetchTags = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/tags`
+        `${process.env.REACT_APP_BACKEND_URL}/tags`
       );
 
       const tags = response.data.tags;
@@ -52,7 +52,7 @@ const WorkTrackProvider = ({ children }) => {
   const fetchProjects = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BACKEND_URL}/api/project`
+        `${process.env.REACT_APP_BACKEND_URL}/project`
       );
 
       const projects = response.data.projects;
@@ -67,7 +67,7 @@ const WorkTrackProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await privateApi.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/team`,
+        `${process.env.REACT_APP_BACKEND_URL}/team`,
         teamData
       );
 
@@ -103,7 +103,7 @@ const WorkTrackProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await privateApi.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/project`,
+        `${process.env.REACT_APP_BACKEND_URL}/project`,
         projectData
       );
 
@@ -138,7 +138,7 @@ const WorkTrackProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/user/signup`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/signup`,
         data
       );
 
@@ -170,7 +170,7 @@ const WorkTrackProvider = ({ children }) => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/user/login`,
+        `${process.env.REACT_APP_BACKEND_URL}/user/login`,
         {
           email,
           password,

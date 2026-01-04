@@ -25,7 +25,7 @@ export default DashboardScreenPage;
 
 const dashboard = async () => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/task`);
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/task`);
 
     return response?.data;
   } catch (error) {}

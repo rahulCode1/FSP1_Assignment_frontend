@@ -19,7 +19,7 @@ export const loader = async ({ request, params }) => {
 
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/api/team/${projectId}`
+      `${process.env.REACT_APP_BACKEND_URL}/team/${projectId}`
     );
 
     return response.data;

@@ -26,7 +26,7 @@ export default ProjectInfoPage;
 const productInfo = async (projectId) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/api/project/${projectId}`
+      `${process.env.REACT_APP_BACKEND_URL}/project/${projectId}`
     );
 
     return response.data;
