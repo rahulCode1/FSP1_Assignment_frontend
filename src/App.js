@@ -15,7 +15,7 @@ import ReportPage from './pages/ReportPage';
 import AddProject from './components/project/AddProject';
 import ProjectPage from './pages/ProjectPage';
 import TeamDetails, { loader as teamLoader } from './pages/TeamDetailsPage';
-
+import TaskListPage from './pages/TaskListPage';
 
 
 const router = createBrowserRouter([
@@ -30,6 +30,9 @@ const router = createBrowserRouter([
       },
       {
         path: "addTask", element: <AddTaskPage />, action: addTaskAction
+      },
+      {
+        path: "list", element: <TaskListPage/>
       },
       {
         path: ":id", element: <TaskDetailsPage />, loader: taskDetailsLoader, action: taskAction

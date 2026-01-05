@@ -1,7 +1,7 @@
 import { useWorkContext } from "../../context/workTrackContext";
 import SubmitLoading from "../loading/SubmitLoading";
 
-const AddTaskFrom = ({ setTaskModal, fetcher }) => {
+const AddTaskFrom = ({  fetcher }) => {
   const { teams, users, tags, projects } = useWorkContext();
 
   const status = ["To Do", "In Progress", "Completed", "Blocked"];

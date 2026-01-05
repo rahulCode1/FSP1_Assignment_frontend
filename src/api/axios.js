@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const privateApi = axios.create({
-    baseURL: `${process.env.REACT_APP_BACKEND_URL}/api`,
+    baseURL: `${process.env.REACT_APP_BACKEND_URL}`,
 });
 
 privateApi.interceptors.request.use((config) => {
