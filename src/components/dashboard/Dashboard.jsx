@@ -14,6 +14,8 @@ const Dashboard = ({ tasks }) => {
   const taskFetcher = useFetcher();
   const { projects } = useWorkContext();
 
+  console.log(process.env.REACT_APP_BACKEND_URL)
+
   // Close modal when task submission is complete
   useEffect(() => {
     if (taskFetcher.state === "idle" && taskFetcher.data) {
