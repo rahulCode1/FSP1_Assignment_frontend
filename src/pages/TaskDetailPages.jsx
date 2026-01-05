@@ -1,6 +1,8 @@
 import axios from "axios";
 import TaskDetails from "../components/task/TaskDetails";
 import { Await, useLoaderData } from "react-router-dom";
+import privateApi from "../api/axios";
+
 import {
   showLoadingToast,
   showSuccessToast,
@@ -47,7 +49,7 @@ export const action = async ({ request, params }) => {
 
 
   try {
-    await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/task/${taskId}`);
+    await privateApi.patch(`${process.env.REACT_APP_BACKEND_URL}/task/${taskId}`);
     showSuccessToast(toastId, `Status update to Completed`);
   } catch (error) {
 
