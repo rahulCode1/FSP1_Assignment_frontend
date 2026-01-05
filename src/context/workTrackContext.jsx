@@ -98,7 +98,7 @@ const WorkTrackProvider = ({ children }) => {
     }
   };
   const addProject = async (projectData) => {
-    let toastId = showLoadingToast("Adding team...");
+    let toastId = showLoadingToast("Adding project...");
 
     try {
       setLoading(true);
