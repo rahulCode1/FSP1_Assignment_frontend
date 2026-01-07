@@ -4,6 +4,8 @@ import TaskClosedByTeam from "./TaskClosedByTeam";
 import "./chartSetup";
 
 const Report = ({ tasks }) => {
+
+
   
   return (
     <div className="min-h-screen bg-gray-50  sm:p-6 lg:p-8">

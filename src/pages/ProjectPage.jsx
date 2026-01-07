@@ -1,18 +1,19 @@
-import { useWorkContext } from "../context/workTrackContext";
+import { Suspense } from "react";
 import Projects from "../components/project/Projects";
-import LoadingSpinner from "../components/loading/LoadingSpinner";
+import { Await, useRouteLoaderData } from "react-router-dom";
+import LoadingSpinner from "../components/loading/LoadingSpinner"
 
 const ProjectPage = () => {
-  const { projects, isLoading } = useWorkContext();
+  const { dashboard } = useRouteLoaderData("task_id");
 
   return (
-    <>
-      {isLoading ? (
-        <LoadingSpinner size={30} />
-      ) : (
-        <Projects projects={projects} />
-      )}
-    </>
+    <Suspense fallback={<LoadingSpinner/>}>
+     
+
+      <Await resolve={dashboard}>
+        {(isTaskLoad) => <Projects tasks={isTaskLoad.tasks} />}
+      </Await>
+    </Suspense>
   );
 };
 

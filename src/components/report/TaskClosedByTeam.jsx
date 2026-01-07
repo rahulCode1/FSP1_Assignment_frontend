@@ -3,7 +3,7 @@ import { Bar } from "react-chartjs-2";
 const TaskClosedByTeam = ({ tasks }) => {
   const completedTask = tasks.filter((task) => task.status === "Completed");
   const groupedByTeam = completedTask.reduce((acc, curr) => {
-    const team = curr.team.name;
+    const team = curr?.team ? curr.team.name : "Unknown";
     acc[team] = (acc[team] || 0) + 1;
     return acc;
   }, {});
@@ -36,9 +36,9 @@ const TaskClosedByTeam = ({ tasks }) => {
       },
     },
     scales: {
-      y: { 
+      y: {
         beginAtZero: true,
-        grace: '10%',
+        grace: "10%",
       },
     },
     layout: {
@@ -60,4 +60,3 @@ const TaskClosedByTeam = ({ tasks }) => {
 };
 
 export default TaskClosedByTeam;
-

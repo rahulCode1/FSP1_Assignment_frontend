@@ -23,9 +23,10 @@ const Header = () => {
     { to: "/projects", label: "Projects" },
     { to: "/list", label: "Tasks" },
     { to: "/team", label: "Team" },
-    { to: "/signup", label: "Signup" },
-    { to: "/login", label: "Login" },
     { to: "/report", label: "Report" },
+    ...(user ? [{ to: "/setting", label: "Setting" }] : []),
+    { to: "/signup", label: "Signup" },
+    ...(!user ? [{ to: "/login", label: "Login" }] : []),
   ];
 
   return (

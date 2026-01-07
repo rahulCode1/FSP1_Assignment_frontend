@@ -1,13 +1,20 @@
-import { Link, useFetcher, useSearchParams } from "react-router-dom";
-import TaskForm from "./TaskForm";
-import { useEffect, useState } from "react";
-import Modal from "../model/Modal";
-import { useWorkContext } from "../../context/workTrackContext";
+import { Link, useSearchParams, useRevalidator } from "react-router-dom";
+import privateApi from "../../api/axios";
+import {
+  showErrorToast,
+  showLoadingToast,
+  showSuccessToast,
+} from "../../utils/toast";
 
-const TaskList = ({ tasks }) => {
+import { useWorkContext } from "../../context/workTrackContext";
+import remove from "../../imgs/delete.png";
+import { useState } from "react";
+
+const Tasks = ({ tasks }) => {
+  const [isDeleteing, setIsDeleteing] = useState(false);
   const { users, tags, teams, projects } = useWorkContext();
-  const [isTaskModalOpen, setTaskModal] = useState(false);
-  const fetcher = useFetcher();
+  const { revalidate } = useRevalidator();
+
   const [searchParams, setSearchParams] = useSearchParams();
   let filteredTask =
     searchParams.get("owner") === null
@@ -70,32 +77,30 @@ const TaskList = ({ tasks }) => {
     setSearchParams(params);
   };
 
-  useEffect(() => {
-    if (fetcher.state === "idle" && fetcher.data) {
-      setTaskModal(false);
-    }
-  }, [fetcher.state, fetcher.data]);
-
   const status = ["To Do", "In Progress", "Completed", "Blocked"];
+
+  const removeHandler = async (id) => {
+    const toastId = showLoadingToast("Removeing task...");
+    try {
+      setIsDeleteing(true);
+      const response = await privateApi.delete(`task/${id}`);
+      showSuccessToast(
+        toastId,
+        response?.data?.message || "Task removed successfully."
+      );
+      revalidate();
+    } catch (error) {
+      showErrorToast(
+        toastId,
+        error.response?.data?.message || "Failed to delete task."
+      );
+    } finally {
+      setIsDeleteing(false);
+    }
+  };
 
   return (
     <main className="py-3">
-      <div className="d-flex justify-content-between align-items-center py-3">
-        <h1>Tasks </h1>
-        <button onClick={() => setTaskModal(true)} className="btn btn-primary">
-          Add new Task
-        </button>
-      </div>
-
-      {isTaskModalOpen && (
-        <Modal
-          title={"Add new task"}
-          isOpen={isTaskModalOpen}
-          onClose={() => setTaskModal(false)}
-        >
-          <TaskForm fetcher={fetcher} method={"post"} />
-        </Modal>
-      )}
       {tasks.length !== 0 ? (
         <div>
           <div className="card shadow-sm mb-4">
@@ -331,6 +336,7 @@ const TaskList = ({ tasks }) => {
                 <th>Task</th>
                 <th>Status</th>
                 <th>Time to complete</th>
+                <th>Remove </th>
               </tr>
             </thead>
 
@@ -347,6 +353,19 @@ const TaskList = ({ tasks }) => {
                     </td>
                     <td>{task.status}</td>
                     <td>{task.timeToComplete} days</td>
+                    <td>
+                      <button
+                        onClick={() => removeHandler(task.id)}
+                        className="btn"
+                        disabled={isDeleteing}
+                      >
+                        <img
+                          src={remove}
+                          className="img-fluid"
+                          style={{ width: "20px" }}
+                        />
+                      </button>
+                    </td>
                   </tr>
                 ))}
             </tbody>
@@ -359,4 +378,4 @@ const TaskList = ({ tasks }) => {
   );
 };
 
-export default TaskList;
+export default Tasks;

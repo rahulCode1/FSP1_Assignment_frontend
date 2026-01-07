@@ -195,6 +195,9 @@ const WorkTrackProvider = ({ children }) => {
     }
   };
 
+  
+
+
   const logout = () => {
     const toastId = showLoadingToast("Loging out...");
     setUser(null);
@@ -217,6 +220,8 @@ const WorkTrackProvider = ({ children }) => {
         users,
         tags,
         projects,
+        setProjects,
+        setTeams,
         isLoading,
         user,
         signup,

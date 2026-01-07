@@ -14,7 +14,6 @@ const Dashboard = ({ tasks }) => {
   const taskFetcher = useFetcher();
   const { projects } = useWorkContext();
 
-  console.log(process.env.REACT_APP_BACKEND_URL)
 
   // Close modal when task submission is complete
   useEffect(() => {
@@ -46,7 +45,11 @@ const Dashboard = ({ tasks }) => {
     <main className="">
       <div>
         {isOpen && (
-          <Modal title={"Add new Project"} onClose={() => setIsOpen(false)} isOpen={isOpen}>
+          <Modal
+            title={"Add new Project"}
+            onClose={() => setIsOpen(false)}
+            isOpen={isOpen}
+          >
             {<AddProject setIsOpen={setIsOpen} />}
           </Modal>
         )}
@@ -79,8 +82,12 @@ const Dashboard = ({ tasks }) => {
       <div>
         <div>
           {isTaskModalOpen && (
-            <Modal title={"Add new Task"} onClose={() => setTaskModal(false)} isOpen={isTaskModalOpen}>
-              <AddTaskFrom setTaskModal={setTaskModal} fetcher={taskFetcher} />
+            <Modal
+              title={"Add new Task"}
+              onClose={() => setTaskModal(false)}
+              isOpen={isTaskModalOpen}
+            >
+              <AddTaskFrom fetcher={taskFetcher} method={"post"} />
             </Modal>
           )}
         </div>
