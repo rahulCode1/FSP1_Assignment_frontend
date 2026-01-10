@@ -1,70 +1,234 @@
-# Getting Started with Create React App
+# Work Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack work track web app where you can browse, search, add, edit & view detailed task.
+Built with React frontend, Express/Node backend, MongoDB, database & JWT-based authentication.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Demo Link
 
-### `npm start`
+[Live Demo](https://fsp-1-assignment-frontend-sigma.vercel.app)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Login
 
-### `npm test`
+> **Guest**
+> Username: `guest`
+> Password: `guest123`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Quick Start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+git clone https://github.com/rahulCode1/FSP1_Assignment_frontend.git
+cd FSP1_Assignment_frontend
+npm install
+npm start  # or `npm start`
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies
 
-### `npm run eject`
+- React JS
+- React Router
+- Node JS
+- Express
+- MongoDB
+- JWT
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Dashboard**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Display a list of all projects & tasks.
 
-## Learn More
+**Projects**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- View tasks grouped via project.
+- Filter & short
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Tasks**
 
-### Code Splitting
+- View all tasks
+- Various filters & tasks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Task Details**
 
-### Analyzing the Bundle Size
+- View full task details.
+- Authenticated user can edit task.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**Team**
 
-### Making a Progressive Web App
+- Display all tasks via team.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**Report**
 
-### Advanced Configuration
+- Showing task report using chart.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Setting**
 
-### Deployment
+- All tasks (Authenticated user can delete tasks.)
+- All projects (Authenticated user can delete projects.)
+- All team (Authenticated user can delete team.)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Authentication**
 
-### `npm run build` fails to minify
+- User Signup & Login with JWT
+- Protected routes for add, edit, delete tasks (Only add & delete project, team).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+--
+
+## API Reference
+
+### **GET /api/task**
+
+List of all tasks
+Sample Response:
+
+```
+[
+    {
+        id, name, project, ...
+    }, ...
+]
+```
+
+### **POST /api/task**
+
+Add new task
+Sample Response
+
+```
+{
+    id, name, project, ...
+}
+```
+
+### **Get /api/task/:id**
+
+Task details
+Sample Response
+
+```
+{
+    id, name, project, ...
+}
+```
+
+### **Patch /api/task/:id**
+
+Edit task
+
+### **Delete /api/task/:id**
+
+Delete task
+
+### **Post /api/project**
+
+Add project
+Sample response:
+
+```
+{
+    id, name, description
+}
+```
+
+### **Get /api/project**
+
+Get all projects
+Sample response:
+
+```
+[
+    {
+        id, name, description, ...
+    }   , ...
+]
+```
+
+### \*\*Delete /api/project/:id
+
+Delete project
+
+### **Get /api/team**
+
+Get all team
+Sample response
+
+```
+[
+    {
+        id, name, description, ...
+    }, ...
+]
+```
+
+### **Post /api/team**
+
+Add team
+Sample response
+
+```
+{
+    id, name, description
+}
+```
+
+### **Delete /api/team/:id**
+
+Delete team
+
+### **Post /api/tags**
+
+Add tag
+Sample response:
+
+```
+{
+    name
+}
+```
+
+### **Get /api/tags**
+
+Get all tags
+Sample response:
+
+```
+[
+    {
+        name
+    }, ...
+]
+```
+
+### **Post /api/user/signup**
+
+Add user
+Sample response:
+
+```
+{
+    name, email, password
+}
+```
+
+### **Post /api/user/login**
+
+User login
+Sample response: 
+{
+    userId, token
+}
+
+---
+
+## Contact
+
+For bugs or feature request, please reach out to rahulkumawat50665@gmail.com
