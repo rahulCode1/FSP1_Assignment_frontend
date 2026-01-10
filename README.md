@@ -152,7 +152,7 @@ Sample response:
 ]
 ```
 
-### \*\*Delete /api/project/:id
+### **Delete /api/project/:id**
 
 Delete project
 
